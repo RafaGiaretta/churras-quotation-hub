@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentação - Plataforma de Cotação e Estoque</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #003366;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table, th, td {
+      border: 1px solid #aaa;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    .diagram {
+      background-color: #eef;
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 1px solid #99c;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Documentação Funcional - Plataforma de Cotação e Estoque</h1>
+
+  <div class="section">
+    <h2>1. Resumo Executivo</h2>
+    <p>A Plataforma de Cotação e Estoque permite que fornecedores se cadastrem e gerenciem seus próprios produtos e preços em áreas exclusivas. O administrador da churrascaria tem acesso total para visualizar, comparar preços, acompanhar históricos e simular pedidos com base no menor valor. O objetivo é automatizar cotações, reduzir falhas e dar maior controle à empresa compradora.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Objetivos do Sistema</h2>
+    <ul>
+      <li>Cadastro independente de fornecedores</li>
+      <li>Centralização de produtos e preços</li>
+      <li>Privacidade entre fornecedores</li>
+      <li>Cotações automáticas com base no menor preço</li>
+      <li>Histórico de preços para tomada de decisão</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. Perfis de Usuário</h2>
+    <h3>Fornecedor</h3>
+    <ul>
+      <li>Cadastro e login</li>
+      <li>Área restrita individual</li>
+      <li>Gerenciamento de produtos</li>
+    </ul>
+    <h3>Administrador</h3>
+    <ul>
+      <li>Visualização completa dos dados</li>
+      <li>Simulação de cotações</li>
+      <li>Análises e relatórios gerenciais</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Funcionalidades</h2>
+    <ul>
+      <li>Login e controle de acesso</li>
+      <li>Dashboard para administrador com indicadores e gráficos</li>
+      <li>Área do fornecedor com lista e edição de produtos</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. Fluxo de Acesso</h2>
+    <div class="diagram">
+      Login
+      ├──> Administrador
+      │    ├── Dashboard (BI)
+      │    ├── Cotação de Produtos
+      │    └── Histórico de Preços
+      └──> Fornecedor
+           └── Área exclusiva com gestão de produtos
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. Exemplo de Dados Simulados</h2>
+    <h3>Produtos</h3>
+    <table>
+      <tr><th>Produto</th><th>Fornecedor</th><th>Preço (R$)</th></tr>
+      <tr><td>Picanha</td><td>Fornecedor A</td><td>80,00</td></tr>
+      <tr><td>Picanha</td><td>Fornecedor B</td><td>75,00</td></tr>
+      <tr><td>Linguiça Toscana</td><td>Fornecedor A</td><td>25,00</td></tr>
+      <tr><td>Linguiça Toscana</td><td>Fornecedor C</td><td>22,00</td></tr>
+      <tr><td>Maminha</td><td>Fornecedor B</td><td>60,00</td></tr>
+      <tr><td>Maminha</td><td>Fornecedor C</td><td>59,00</td></tr>
+    </table>
+
+    <h3>Histórico de Preços - Picanha</h3>
+    <table>
+      <tr><th>Data</th><th>Preço (R$)</th></tr>
+      <tr><td>01/06</td><td>85,00</td></tr>
+      <tr><td>15/06</td><td>82,00</td></tr>
+      <tr><td>01/07</td><td>80,00</td></tr>
+      <tr><td>10/07</td><td>78,00</td></tr>
+      <tr><td>13/07</td><td>75,00</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>7. Tecnologias Envolvidas</h2>
+    <table>
+      <tr><th>Camada</th><th>Tecnologia</th></tr>
+      <tr><td>Front-end</td><td>Angular ou React</td></tr>
+      <tr><td>Back-end</td><td>Python com FastAPI</td></tr>
+      <tr><td>Banco de Dados</td><td>Azure SQL Database</td></tr>
+      <tr><td>Hospedagem</td><td>Azure App Services</td></tr>
+      <tr><td>Visualizações BI</td><td>Chart.js ou Recharts</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>8. Status Atual</h2>
+    <p>Protótipo com dados simulados disponível. Interface navegável para demonstração. Integrações reais ainda não implementadas.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Próximos Passos</h2>
+    <ul>
+      <li>Implementar autenticação real</li>
+      <li>Conectar ao banco Azure SQL</li>
+      <li>Desenvolver API com FastAPI</li>
+      <li>Adicionar exportação de relatórios</li>
+      <li>Implementar notificações</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>10. Considerações Finais</h2>
+    <p>A plataforma visa otimizar o processo de compras da churrascaria, trazendo praticidade, controle e inteligência ao comparar preços e analisar históricos de mercado.</p>
+  </div>
+</body>
+</html>
