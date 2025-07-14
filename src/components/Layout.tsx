@@ -66,6 +66,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     Histórico de Preços
                   </Link>
                 </Button>
+                <Button
+                  variant={isActive('/admin/products') ? 'default' : 'ghost'}
+                  asChild
+                >
+                  <Link to="/admin/products">
+                    <Package className="mr-2 h-4 w-4" />
+                    Produtos
+                  </Link>
+                </Button>
               </>
             )}
             

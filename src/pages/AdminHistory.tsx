@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { picanhaHistory } from '@/data/mockData';
+import { priceHistories, products } from '@/data/mockData';
 
 const AdminHistory: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState('picanha');
+  
+  const selectedProductData = products.find(p => p.id === selectedProduct);
+  const selectedHistory = priceHistories[selectedProduct] || [];
+
   return (
     <div className="space-y-8">
       <div>
@@ -11,9 +17,33 @@ const AdminHistory: React.FC = () => {
         <p className="text-muted-foreground mt-2">Acompanhe a evolução dos preços ao longo do tempo</p>
       </div>
 
+      {/* Seletor de Produto */}
       <Card>
         <CardHeader>
-          <CardTitle>Evolução do Preço - Picanha</CardTitle>
+          <CardTitle>Selecionar Produto</CardTitle>
+          <CardDescription>
+            Escolha o produto para visualizar o histórico de preços
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Select value={selectedProduct} onValueChange={setSelectedProduct}>
+            <SelectTrigger className="w-full max-w-xs">
+              <SelectValue placeholder="Selecione um produto" />
+            </SelectTrigger>
+            <SelectContent>
+              {products.map((product) => (
+                <SelectItem key={product.id} value={product.id}>
+                  {product.name} - {product.category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Evolução do Preço - {selectedProductData?.name}</CardTitle>
           <CardDescription>
             Histórico de preços dos últimos meses
           </CardDescription>
@@ -21,7 +51,7 @@ const AdminHistory: React.FC = () => {
         <CardContent>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={picanhaHistory}>
+              <LineChart data={selectedHistory}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis 
                   dataKey="date" 
@@ -73,8 +103,8 @@ const AdminHistory: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {picanhaHistory.map((entry, index) => {
-                  const previousPrice = index > 0 ? picanhaHistory[index - 1].price : entry.price;
+                {selectedHistory.map((entry, index) => {
+                  const previousPrice = index > 0 ? selectedHistory[index - 1].price : entry.price;
                   const variation = entry.price - previousPrice;
                   const variationPercent = previousPrice !== 0 ? ((variation / previousPrice) * 100) : 0;
                   
